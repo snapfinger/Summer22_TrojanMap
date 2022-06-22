@@ -1,15 +1,17 @@
-# EE538 Final Project - Spring 2022 - TrojanMap
+# EE538 Final Project - Summer 2022 - TrojanMap
 
-## Deadline: 
+## Deadlines
 
 
-Phase 1 submission: Monday, April 11 by 23:59 pm
+Phase 1 submission: Monday, March 11 by 23:59 pm
 
-Phase 2 submission: Wednesday, April 20 by 23:59 pm
+Phase 2 submission: Wednesday, March 20 by 23:59 pm
 
 Phase 3 submission: Sunday, May 1 by 23:59 pm
 
-Video Presentation: Friday, April 29
+Video Presentation: July 29
+
+Report: Aug 5
 
 
 ## TrojanMap
@@ -18,9 +20,9 @@ This project focuses on using data structures in C++ and implementing various gr
 
 <p align="center"><img src="img/TrojanMap.png" alt="Trojan" width="500" /></p>
 
-- Please clone the repository, look through [README.md](README.md) and fill up functions to finish in the project.
-- Please make sure that your code can run `bazel run/test`.
-- In this project, you will need to fill up [trojanmap.cc](src/lib/trojanmap.cc) and add unit tests in the `tests` directory.
+- Please clone the repository, read through [README.md](README.md) and implement the functions of the project.
+- Please make sure that your code can run `bazel run` and `bazel test`.
+- You need to fill in [trojanmap.cc](src/lib/trojanmap.cc) and add unit tests in the `tests` directory.
 
 ---
 
@@ -46,22 +48,39 @@ class Node {
 
 ## Prerequisites
 
-### OpenCV Installation
+### External Libraries Installation
 
-For visualization, we use OpenCV library. You will use this library as a black box and don't need to worry about the graphic details.
+For visualization, we use OpenCV library. You will use this library as a black box and don't need to worry about the graphic details. Use the following commands to install OpenCV and other libararies.
 
-Use the following commands to install OpenCV and other libarary.
+#### For MacOS users
 
-### Other library Installations
-
-For MacOS:
+Step1. type the following three lines in your terminal
 ```shell
 $ brew install cmake
 $ brew install opencv
 $ brew install ncurses
 ```
 
-For Ubuntu:
+Step 2.
+
+Check the installation paths of opencv and ncurses by
+
+```shell
+brew info opencv
+```
+
+and
+
+```shell
+brew info ncurses
+```
+
+respectively, and update their paths in the `WORKSPACE` file of your project root directory with the actual installation paths
+
+
+
+#### For Ubuntu users
+Step1. 
 ```shell
 $ cd **your project folder**
 $ git clone https://github.com/opencv/opencv.git
@@ -71,7 +90,7 @@ $ sudo apt-get install libncurses5-dev libncursesw5-dev
 $ cp ubuntu/* ./
 ```
 
-Next, type the following, but make sure that you set the **path_to_install_folder** to be the absolute path to the **install** folder under opencv.
+Step2. Make sure you set the **path_to_install_folder** to be the absolute path to the **install** folder under opencv when running the following commands
 
 ```shell
 $ cd opencv/
@@ -95,15 +114,13 @@ $ make install
 
 ## Run the program
 
-Please run:
-
-For MacOS,
+For MacOS users, run
 
 ```shell
 $ bazel run src/main:main
 ```
 
-For Ubuntu, you need to use the following command to prevent errors.
+For Ubuntu users, you need to use the following command to prevent errors.
                
 ```shell
 $ bazel run --cxxopt='-std=c++17' src/main:main
@@ -262,18 +279,18 @@ Please report and compare the time spent by these 2 algorithms.
 
 Example:
 
-Input: "Ralphs", "Chick-fil-A" \
-Output: ["2578244375","4380040154","4380040153","4380040152","4380040148","6818427920","6818427919",
-      "6818427918","6818427892","6818427898","6818427917","6818427916","7232024780","6813416145",
-      "6813416154","6813416153","6813416152","6813416151","6813416155","6808069740","6816193785",
-      "6816193786","123152294","4015203136","4015203134","4015203133","21098539","6389467809",
-      "4015203132","3195897587","4015203129","4015203127","6352865690","6813379589","6813379483",
-      "3402887081","6814958394","3402887080","602606656","4872897515","4399697589","6814958391",
-      "123209598","6787673296","122728406","6807762271","4399697304","4399697302","5231967015",
-      "1862347583","3233702827","4540763379","6819179753","6820935900","6820935901","6813379556",
-      "6820935898","1781230450","1781230449","4015405542","4015405543","1837212104","1837212107",
-      "2753199985","6820935907","1837212100","4015372458","6813411588","1837212101","6814916516",
-      "6814916515","6820935910","4547476733"]
+Input: "Ralphs", "ChickfilA" \
+Output: ["2578244375", "5559640911", "6787470571", "6808093910", "6808093913", "6808093919", "6816831441",
+      "6813405269", "6816193784", "6389467806", "6816193783", "123178876", "2613117895", "122719259",
+      "2613117861", "6817230316", "3642819026", "6817230310", "7811699597", "5565967545", "123318572",
+      "6813405206", "6813379482", "544672028", "21306059", "6813379476", "6818390140", "63068610", 
+      "6818390143", "7434941012", "4015423966", "5690152766", "6813379440", "6813379466", "21306060",
+      "6813379469", "6813379427", "123005255", "6807200376", "6807200380", "6813379451", "6813379463",
+      "123327639", "6813379460", "4141790922", "4015423963", "1286136447", "1286136422", "4015423962",
+      "6813379494", "63068643", "6813379496", "123241977", "4015372479", "4015372477", "1732243576",
+      "6813379548", "4015372476", "4015372474", "4015372468", "4015372463", "6819179749", "1732243544",
+      "6813405275", "348121996", "348121864", "6813405280", "1472141024", "6813411590", "216155217", 
+      "6813411589", "1837212103", "1837212101", "6820935911", "4547476733"]
 
 ```shell
 **************************************************************
@@ -284,17 +301,17 @@ Please input the start location:Ralphs
 Please input the destination:Target
 *************************Dijkstra*****************************
 *************************Results******************************
-"2578244375","4380040154","4380040158","4380040167","6805802087","8410938469","6813416131","7645318201","6813416130","6813416129","123318563","452688940","6816193777","123408705","6816193774","452688933","452688931","123230412","6816193770","6787470576","4015442011","6816193692","6816193693","6816193694","4015377691","544693739","6816193696","6804883323","6807937309","6807937306","6816193698","4015377690","4015377689","122814447","6813416159","6813405266","4015372488","4015372487","6813405229","122719216","6813405232","4015372486","7071032399","4015372485","6813379479","6813379584","6814769289","5237417650",
-The distance of the path is:0.927969 miles
+"2578244375","5559640911","6787470571","6808093910","8410528464","8410528457","6808093913","6808093919","6816831441","6813405269","6816193784","6389467806","6816193783","123178876","2613117895","122719259","6807243574","6807243576","213332111","441895337","441895335","122719255","2613117893","6813405231","6813405237","6813405235","6047197523","6813379584","5237417650",
+The distance of the path is:0.823773 miles
 **************************************************************
-Time taken by function: 39 ms
+Time taken by function: 23 ms
 
 *************************Bellman_Ford*************************
 *************************Results******************************
-"2578244375","4380040154","4380040158","4380040167","6805802087","8410938469","6813416131","7645318201","6813416130","6813416129","123318563","452688940","6816193777","123408705","6816193774","452688933","452688931","123230412","6816193770","6787470576","4015442011","6816193692","6816193693","6816193694","4015377691","544693739","6816193696","6804883323","6807937309","6807937306","6816193698","4015377690","4015377689","122814447","6813416159","6813405266","4015372488","4015372487","6813405229","122719216","6813405232","4015372486","7071032399","4015372485","6813379479","6813379584","6814769289","5237417650",
-The distance of the path is:0.927969 miles
+"2578244375","5559640911","6787470571","6808093910","8410528464","8410528457","6808093913","6808093919","6816831441","6813405269","6816193784","6389467806","6816193783","123178876","2613117895","122719259","6807243574","6807243576","213332111","441895337","441895335","122719255","2613117893","6813405231","6813405237","6813405235","6047197523","6813379584","5237417650",
+The distance of the path is:0.823773 miles
 **************************************************************
-Time taken by function: 7084 ms
+Time taken by function: 3484 ms
 ```
 
 <p align="center"><img src="img/Routing.png" alt="Routing" width="500"/></p>
