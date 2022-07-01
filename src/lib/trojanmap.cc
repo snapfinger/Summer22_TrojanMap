@@ -99,6 +99,38 @@ std::vector<std::string> TrojanMap::Autocomplete(std::string name){
   return results;
 }
 
+
+/**
+ * GetUniqCategory: Return all the possible unique categories of locations.
+ *
+ * @return {std::vector<std::string>}  : a vector of full names
+ */
+std::vector<std::string> TrojanMap::GetUniqCategory(){
+}
+
+
+/**
+ * GetCategoryLocation: Return all the locations of the input category (i.e. 'attributes' in data.csv). 
+ * If there is no location of that category, return (-1, -1). The function should * be case-insensitive.
+ *
+ * @param  {std::string} category          : partial name
+ * @return {std::pair<double, double>}     : (lat, lon)
+ */
+std::pair<double, double> TrojanMap::GetCategoryLocation(std::string category){
+}
+
+
+/**
+* GetLocation_RegularExpression: Given the regular expression of a location's name, your program should first check whether the regular expression is valid, and if so it returns all locations that match that regular expression.
+ *
+ * @param  {std::regex} location          : the name of a location
+ * @return {std::pair<double, double>}     : (lat, lon)
+ */
+std::pair<double, double> TrojanMap::GetLocation_RegularExpression(std::regex location){
+}
+
+
+
 /**
  * CalculateDistance: Get the distance between 2 nodes. 
  * 
