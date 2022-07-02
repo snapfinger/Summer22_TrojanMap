@@ -2,16 +2,18 @@
 
 ## Deadlines
 
+TODO: add 3 new questions
+TODO: numbering of items 
 
-Phase 1 submission: Monday, March 11 by 23:59 pm
+Phase 1: Fridy, July 8, 23:59 pm
 
-Phase 2 submission: Wednesday, March 20 by 23:59 pm
+Phase 2: Fridy, July 15, 23:59 pm
 
-Phase 3 submission: Sunday, May 1 by 23:59 pm
+Phase 3 submission: Fridy, July 22, 23:59 pm
 
-Video Presentation: July 29
+Video Presentation: Fridy, July 29, 23:59 pm
 
-Report: Aug 5
+Report: Friday, Aug 5, 23:59 pm
 
 
 ## TrojanMap
@@ -54,7 +56,7 @@ For visualization, we use OpenCV library. You will use this library as a black b
 
 #### For MacOS users
 
-Step1. type the following three lines in your terminal
+Step 1. type the following three lines in your terminal
 ```shell
 $ brew install cmake
 $ brew install opencv
@@ -80,7 +82,7 @@ respectively, and update their paths in the `WORKSPACE` file of your project roo
 
 
 #### For Ubuntu users
-Step1. 
+Step 1. 
 ```shell
 $ cd **your project folder**
 $ git clone https://github.com/opencv/opencv.git
@@ -90,7 +92,7 @@ $ sudo apt-get install libncurses5-dev libncursesw5-dev
 $ cp ubuntu/* ./
 ```
 
-Step2. Make sure you set the **path_to_install_folder** to be the absolute path to the **install** folder under opencv when running the following commands
+Step 2. Make sure you set the **path_to_install_folder** to be the absolute path to the **install** folder under opencv when running the following commands
 
 ```shell
 $ cd opencv/
@@ -157,7 +159,7 @@ Please add you test in the [trojanmap_test_student.cc](tests/trojanmap_test_stud
 $ bazel test tests:trojanmap_test_student
 ```
 
-## Step 1: Autocomplete the location name
+## Item 1: Autocomplete the location name
 
 ```c++
 std::vector<std::string> Autocomplete(std::string name);
@@ -194,7 +196,7 @@ Chevron
 Time taken by function: 2 ms
 ```
 
-## Step 2-1: Find the place's Coordinates in the Map
+## Item 2-1: Find the place's coordinates in the Map
 
 ```c++
 std::pair<double, double> GetPosition(std::string name);
@@ -221,7 +223,7 @@ Time taken by function: 1 ms
 
 <p align="center"><img src="img/Target.png" alt="Target" width="500"/></p>
 
-## Step 2-2: Check edit distance between two location names
+## Item 2-2: Check edit distance between two location names
 
 ```c++
 int CalculateEditDistance(std::string name1, std::string name2);
@@ -232,9 +234,13 @@ When entering a location name that does not exist in the map, the map will deter
 + Delete a character
 + Replace a character
 
-If the exact match is found, it will be shown on the map. Otherwise, the map will show the most similar name by using FindClosestName and print a warning. For example, if I type Rolphs, I should get a warning like "Did you mean Ralphs instead of Rolphs?"
+If the exact match is found, it will be shown on the map. Otherwise, the map will show the most similar name by using FindClosestName and print a warning. For example, if I type Rolphs, I should get a warning like "Did you mean Ralphs instead of Rolphs?" You can use dynamic programming to calculate edit distance. 
 
-You can use dynamic programming to calculate edit distance. 
+Notes
+- Space can be treated like other characters.
+- Spell checking part should be case insensitive.
+
+
 
 Example:
 
@@ -264,7 +270,13 @@ Latitude: 34.0318 Longitude: -118.291
 Time taken by function: 2 ms
 ```
 
-## Step 3: CalculateShortestPath between two places
+## Item 3: GetCategory
+Some of the locations are with marked category types (`attributes` field in `data.csv` file)
+
+### Item 4: 
+
+
+## Item 3: CalculateShortestPath between two places
 
 ```c++
 std::vector<std::string> CalculateShortestPath_Dijkstra(std::string &location1_name,
@@ -277,22 +289,8 @@ Given 2 locations A and B, find the best route from A to B. The distance between
 
 Please report and compare the time spent by these 2 algorithms.
 
-Example:
-
-Input: "Ralphs", "ChickfilA" \
-Output: ["2578244375", "5559640911", "6787470571", "6808093910", "6808093913", "6808093919", "6816831441",
-      "6813405269", "6816193784", "6389467806", "6816193783", "123178876", "2613117895", "122719259",
-      "2613117861", "6817230316", "3642819026", "6817230310", "7811699597", "5565967545", "123318572",
-      "6813405206", "6813379482", "544672028", "21306059", "6813379476", "6818390140", "63068610", 
-      "6818390143", "7434941012", "4015423966", "5690152766", "6813379440", "6813379466", "21306060",
-      "6813379469", "6813379427", "123005255", "6807200376", "6807200380", "6813379451", "6813379463",
-      "123327639", "6813379460", "4141790922", "4015423963", "1286136447", "1286136422", "4015423962",
-      "6813379494", "63068643", "6813379496", "123241977", "4015372479", "4015372477", "1732243576",
-      "6813379548", "4015372476", "4015372474", "4015372468", "4015372463", "6819179749", "1732243544",
-      "6813405275", "348121996", "348121864", "6813405280", "1472141024", "6813411590", "216155217", 
-      "6813411589", "1837212103", "1837212101", "6820935911", "4547476733"]
-
-```shell
+Example
+```
 **************************************************************
 * 3. CalculateShortestPath                                    
 **************************************************************
@@ -301,22 +299,90 @@ Please input the start location:Ralphs
 Please input the destination:Target
 *************************Dijkstra*****************************
 *************************Results******************************
-"2578244375","5559640911","6787470571","6808093910","8410528464","8410528457","6808093913","6808093919","6816831441","6813405269","6816193784","6389467806","6816193783","123178876","2613117895","122719259","6807243574","6807243576","213332111","441895337","441895335","122719255","2613117893","6813405231","6813405237","6813405235","6047197523","6813379584","5237417650",
-The distance of the path is:0.823773 miles
+"2578244375","4380040154","4380040158","4380040167","6805802087","8410938469","6813416131","7645318201","6813416130","6813416129","123318563","452688940","6816193777","123408705","6816193774","452688933","452688931","123230412","6816193770","6787470576","4015442011","6816193692","6816193693","6816193694","4015377691","544693739","6816193696","6804883323","6807937309","6807937306","6816193698","4015377690","4015377689","122814447","6813416159","6813405266","4015372488","4015372487","6813405229","122719216","6813405232","4015372486","7071032399","4015372485","6813379479","6813379584","6814769289","5237417650",
+The distance of the path is:0.927969 miles
 **************************************************************
-Time taken by function: 23 ms
+Time taken by function: 39 ms
 
 *************************Bellman_Ford*************************
 *************************Results******************************
-"2578244375","5559640911","6787470571","6808093910","8410528464","8410528457","6808093913","6808093919","6816831441","6813405269","6816193784","6389467806","6816193783","123178876","2613117895","122719259","6807243574","6807243576","213332111","441895337","441895335","122719255","2613117893","6813405231","6813405237","6813405235","6047197523","6813379584","5237417650",
-The distance of the path is:0.823773 miles
+"2578244375","4380040154","4380040158","4380040167","6805802087","8410938469","6813416131","7645318201","6813416130","6813416129","123318563","452688940","6816193777","123408705","6816193774","452688933","452688931","123230412","6816193770","6787470576","4015442011","6816193692","6816193693","6816193694","4015377691","544693739","6816193696","6804883323","6807937309","6807937306","6816193698","4015377690","4015377689","122814447","6813416159","6813405266","4015372488","4015372487","6813405229","122719216","6813405232","4015372486","7071032399","4015372485","6813379479","6813379584","6814769289","5237417650",
+The distance of the path is:0.927969 miles
 **************************************************************
-Time taken by function: 3484 ms
+Time taken by function: 7084 ms
 ```
 
 <p align="center"><img src="img/Routing.png" alt="Routing" width="500"/></p>
 
-## Step 4: The Travelling Trojan Problem (AKA Travelling Salesman!)
+
+## Item 5: Cycle Detection
+
+```c++
+bool CycleDetection(std::vector<double> &square);
+```
+
+In this section, we use a square-shaped subgraph of the original graph by using four coordinates stored in ```std::vector<double> square```, which follows the order of left, right, upper, and lower bounds. 
+
+Then try to determine if there is a cycle path in the that subgraph. If it does, return true and report the path of the cycle on the map. Otherwise return false.
+
+## Item 6: Topological Sort
+
+```c++
+std::vector<std::string> DeliveringTrojan(std::vector<std::string> &location_names,
+                                            std::vector<std::vector<std::string>> &dependencies);
+```
+In this section, we assume that we are using a UAV which means we can fly directly from 1 point to another point. Tommy Trojan got a part-time job from TrojanEats, for which he needs to pick up and deliver food from local restaurants to various location near the campus. Tommy needs to visit a few different location near the campus with certain order, since there are some constraints. For example, he must first get the food from the restaurant before arriving at the delivery point. 
+
+The TrojanEats app will have some instructions about these constraints. So, Tommy asks you to help him figure out the feasible route!
+
+Here we will give you a vector of location names that Tommy needs to visit, and also some dependencies between those locations.
+
+
+For example, 
+
+```shell
+Input: 
+location_names = {"Ralphs", "Chick-fil-A", "KFC"}
+dependencies = {{"Ralphs","KFC"}, {"Ralphs","Chick-fil-A"}, {"Chick-fil-A", "KFC"}}
+```
+
+Here, ```{"Ralphs","KFC"}``` means
+that Tommy must go to `Ralphs` prior to `KFC`.
+
+Your output should be:
+```shell
+Output: Ralphs  -> Chick-fil-A -> KFC
+```
+Also, we provide ```PlotPointsOrder``` function that can visualize the results on the map. It will plot each location name and also some arrowed lines to demonstrate a feasible route.
+
+If no feasible route exists, you could simply return an empty vector.
+
+Hint:
+- You also need to finish ```ReadLocationsFromCSVFile``` and ```ReadDependenciesFromCSVFile``` functions, so you could read and parse data from you own CSV files. We also give two sample CSV files under ```input``` folder, which could be a reference. 
+- When it asks you filenames, you need to give the absolute path.
+- If you do not have ```ReadLocationsFromCSVFile``` and ```ReadDependenciesFromCSVFile``` functions ready yet, you can just press enter when it asks you filenames. It will call the default locations and dependencies.
+- The locations are actually nodes, and the dependencies could be directed edges. You may want to first construct a DAG and then implement topological sort algorithm to get the route.
+
+Note
+- Your report should show several examples of topological sort with at least 5 nodes.
+
+
+Below is an example output of 3 nodes
+```shell
+*************************Results******************************
+Topological Sorting Results:
+Ralphs
+Chick-fil-A
+KFC
+**************************************************************
+Time taken by function: 2 ms
+```
+<p align="center"><img src="img/TopologicalSort.png" alt="TSP" width="500"/></p>
+
+In the user interface, we read the locations and dependencies from `topologicalsort_dependencies.csv` and `topologicalsort_locations.csv` to modify your input there.
+
+
+## Item 4: The Travelling Trojan Problem (AKA Travelling Salesman!)
 
 In this section, we assume that we are using a UAV which means we can fly directly from 1 point to another point. Given a vector of location ids, assume every location can reach all other locations in the vector (i.e. assume that the vector of location ids is a complete graph).
 Find the shortest route that covers all the locations exactly once and goes back to the start point. 
@@ -390,113 +456,8 @@ Time taken by function: 0 ms
 
 <p align="center"><img src="img/output.gif" alt="TSP videos" width="500"/></p>
 
-## Step 5: Cycle Detection
 
-```c++
-bool CycleDetection(std::vector<double> &square);
-```
-
-In this section, we use a square-shaped subgraph of the original graph by using four coordinates stored in ```std::vector<double> square```, which follows the order of left, right, upper, and lower bounds. 
-
-Then try to determine if there is a cycle path in the that subgraph. If it does, return true and report that path on the map. Otherwise return false.
-
-Example 1:
-```shell
-Input: square = {-118.299, -118.264, 34.032, 34.011}
-Output: true
-```
-Here we use the whole original graph as our subgraph. 
-<p align="center"><img src="img/cycle1.png" alt="TSP" width="500"/></p>
-
-Example 2:
-```shell
-Input: square = {-118.290, -118.289, 34.030, 34.020}
-Output: false
-```
-Here we use a square area inside USC campus as our subgraph
-<p align="center"><img src="img/cycle2.png" alt="TSP" width="500"/></p>
-
-```shell
-5
-**************************************************************
-* 5. Cycle Detection                                          
-**************************************************************
-
-Please input the left bound longitude(between -118.320 and -118.250):-118.299
-Please input the right bound longitude(between -118.320 and -118.250):-118.264
-Please input the upper bound latitude(between 34.000 and 34.040):34.032
-Please input the lower bound latitude(between 34.000 and 34.040):34.011
-*************************Results******************************
-there exists a cycle in the subgraph 
-**************************************************************
-Time taken by function: 0 ms
-
-5
-**************************************************************
-* 5. Cycle Detection                                          
-**************************************************************
-
-Please input the left bound longitude(between -118.320 and -118.250):-118.290
-Please input the right bound longitude(between -118.320 and -118.250):-118.289
-Please input the upper bound latitude(between 34.000 and 34.040):34.030
-Please input the lower bound latitude(between 34.000 and 34.040):34.020
-*************************Results******************************
-there exist no cycle in the subgraph 
-**************************************************************
-Time taken by function: 0 ms
-```
-## Step 6: Topological Sort
-
-```c++
-std::vector<std::string> DeliveringTrojan(std::vector<std::string> &location_names,
-                                            std::vector<std::vector<std::string>> &dependencies);
-```
-In this section, we assume that we are using a UAV which means we can fly directly from 1 point to another point. Tommy Trojan got a part-time job from TrojanEats, for which he needs to pick up and deliver food from local restaurants to various location near the campus. Tommy needs to visit a few different location near the campus with certain order, since there are some constraints. For example, he must first get the food from the restaurant before arriving at the delivery point. 
-
-The TrojanEats app will have some instructions about these constraints. So, Tommy asks you to help him figure out the feasible route!
-
-Here we will give you a vector of location names that Tommy needs to visit, and also some dependencies between those locations.
-
-
-For example, 
-
-```shell
-Input: 
-location_names = {"Ralphs", "Chick-fil-A", "KFC"}
-dependencies = {{"Ralphs","KFC"}, {"Ralphs","Chick-fil-A"}, {"Chick-fil-A", "KFC"}}
-```
-
-Here, ```{"Ralphs","KFC"}``` means
-that Tommy must go to `Ralphs` prior to `KFC`.
-
-Your output should be:
-```shell
-Output: Ralphs  -> Chick-fil-A -> KFC
-```
-Also, we provide ```PlotPointsOrder``` function that can visualize the results on the map. It will plot each location name and also some arrowed lines to demonstrate a feasible route.
-
-If no feasible route exists, you could simply return an empty vector.
-
-Hint:
-- You also need to finish ```ReadLocationsFromCSVFile``` and ```ReadDependenciesFromCSVFile``` functions, so you could read and parse data from you own CSV files. We also give two sample CSV files under ```input``` folder, which could be a reference. 
-- When it asks you filenames, you need to give the absolute path.
-- If you do not have ```ReadLocationsFromCSVFile``` and ```ReadDependenciesFromCSVFile``` functions ready yet, you can just press enter when it asks you filenames. It will call the default locations and dependencies.
-- The locations are actually nodes, and the dependencies could be directed edges. You may want to first construct a DAG and then implement topological sort algorithm to get the route.
-
-```shell
-*************************Results******************************
-Topological Sorting Results:
-Ralphs
-Chick-fil-A
-KFC
-**************************************************************
-Time taken by function: 2 ms
-```
-<p align="center"><img src="img/TopologicalSort.png" alt="TSP" width="500"/></p>
-
-In the user interface, we read the locations and dependencies from `topologicalsort_dependencies.csv` and `topologicalsort_locations.csv` to modify your input there.
-
-## Step 7: Find Nearby
+## Item 7: Find Nearby
 
 Given a attribute name C, a location name L and a number r and k, find at most k locations in attribute C on the map near L(do not include L) with the range of r and return a vector of string ids. The order of locaitons should from
 nearest to farthest. And you should not include the current location. 
@@ -546,7 +507,7 @@ Similarly for TSP problem, please provide various examples that show the runtime
 
 ## Report and Rubrics:
 
-Your final project should be checked into Github. The README of your project is your report. 
+Your final project should be checked into Github. The [README.md](README.md) of your project is your report. 
 
 ### Report:
 
@@ -560,29 +521,29 @@ Please create a new REPORT.md file and write your report there.
 
 ### Rubrics:
 
-1. Implementation of Auto complete: 5 points. (Phase 1)
-2. Implementation of GetPosition: 5 points. (Phase 1)
-3. Implementation of EditDistance: 10 points. (Phase 1)
-4. Implementation of shortest path: 15 points. (Phase 2)
-   1. Bellman-Ford implementation
-   2. Dijkstra implementation
-   3. Plot two paths, and measure and report time spent by two algorithms.
-5. Implement of Cycle detection: 10 points. (Phase 2)
-   1. Boolean value and draw the cycle if there exists one.
-6. Topological Sort: 10 points. (Phase 2)
-   1. Check whether there exist a topological sort or not
-   2. Return the correct order and plot those point on the map
-7. Implementation of Travelling Trojan: (Phase 3)
-   1. Brute-force: 5 points.
-   2. Brute-force enhanced with early backtracking: 5 points.
-   3. 2-opt: 10 points.
-   4. Animated plot: 5 points.
-8. FindNearby points: 10 points. (Phase 3)
-   1. Return the correct ids and draw the points.
-9. Video presentation and report: 10 points. (Phase 3)
-10. Creating reasonable unit tests: 10 points.
-      1. Three different unit tests for each item.
-11. **Extra credit items**: Maximum of 20 points:
+- Implementation of Auto complete: 5 points. (Phase 1)
+- Implementation of GetPosition: 5 points. (Phase 1)
+- Implementation of EditDistance: 10 points. (Phase 2)
+- Implementation of shortest path: 15 points. (Phase 2)
+   - Bellman-Ford implementation
+   - Dijkstra implementation
+   - Plot two paths, and measure and report time spent by two algorithms.
+- Implement of Cycle detection: 10 points. (Phase 2)
+   - Boolean value and draw the cycle if there exists one.
+- Topological Sort: 10 points. (Phase 2)
+   - Check whether there exist a topological sort or not
+   - Return the correct order and plot those point on the map
+- Implementation of Travelling Trojan: (Phase 3)
+   - Brute-force: 5 points.
+   - Brute-force enhanced with early backtracking: 5 points.
+   - 2-opt: 10 points.
+   - Animated plot: 5 points.
+- FindNearby points: 10 points. (Phase 3)
+   - Return the correct ids and draw the points.
+- Video presentation and report: 10 points. (Phase 3)
+- Creating reasonable unit tests: 10 points.
+      - Three different unit tests for each item.
+- **Extra credit items**: Maximum of 20 points:
       1. [3-opt](http://cs.indstate.edu/~zeeshan/aman.pdf): 10 points.
       2. [Genetic algorithm](https://www.geeksforgeeks.org/traveling-salesman-problem-using-genetic-algorithm/) implementation for Travelling Trojan: 10 points
       3. Create dynamic and animated UI using [ncurses](https://en.wikipedia.org/wiki/Ncurses): 10 points
@@ -594,5 +555,5 @@ Please create a new REPORT.md file and write your report there.
             <p align="center"><img src="img/ncurses example.gif" alt="example" width="500"/></p>
                
 
-      4. Accurate measurement of your algorithm    runtime using Google Benchmark while sweeping the input size and providing a diagram of how the runtime grows based on the input size: 10 points.
+      - Accurate measurement of your algorithm    runtime using Google Benchmark while sweeping the input size and providing a diagram of how the runtime grows based on the input size: 10 points.
 
