@@ -7,9 +7,9 @@
 //  TODO: add 3, 4, 5
 void MapUI::PrintMenu() {
   std::string menu =
-      "TrojanMap\n"
+      "TrojanMap Menu\n"
       "**************************************************************\n"
-      "* Select the function you want to execute.                    \n"
+      "* Enter the function number (1-11) to start:                  \n"
       "* 1. Autocomplete                                             \n"
       "* 2. Find the location                                        \n"
       "* 3. Find all location categories                             \n"
@@ -21,16 +21,15 @@ void MapUI::PrintMenu() {
       "* 9. Travelling salesman problem                              \n"
       "* 10. Find Nearby                                              \n"
       "* 11. Exit                                                     \n"
-      "**************************************************************\n"
-      "Please select 1 - 8: ";
+      "**************************************************************\n";
   std::cout << menu;
   std::string input;
   getline(std::cin, input);
-  char number = input[0];
+  int number = stoi(input);
   std::cout << "\n";
   switch (number)
   {
-  case '1':
+  case 1:
   {
     menu =
         "**************************************************************\n"
@@ -57,7 +56,7 @@ void MapUI::PrintMenu() {
     PrintMenu();
     break;
   }
-  case '2':
+  case 2:
   {
     menu =
         "**************************************************************\n"
@@ -95,7 +94,7 @@ void MapUI::PrintMenu() {
     PrintMenu();
     break;
   }
-    case '3':
+    case 3:
   {
     menu =
         "**************************************************************\n"
@@ -106,7 +105,7 @@ void MapUI::PrintMenu() {
     // std::cout << menu;
     // getline(std::cin, input);
     auto start = std::chrono::high_resolution_clock::now();
-    auto results = map.GetAllCategories();
+    auto results = map.GetUniqueCategory();
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
     menu = "*************************Results******************************\n";
@@ -122,7 +121,15 @@ void MapUI::PrintMenu() {
     PrintMenu();
     break;
   }
-  case '6':
+  case 4:
+  {
+    std::cout << "TODO" << std::endl;
+  }
+  case 5:
+  {
+    std::cout << "TODO" << std::endl;
+  }
+  case 6:
   {
     menu =
         "**************************************************************\n"
@@ -180,7 +187,7 @@ void MapUI::PrintMenu() {
     PrintMenu();
     break;
   }
-  case '7':
+  case 7:
   {
     menu =
         "**************************************************************\n"
@@ -222,7 +229,7 @@ void MapUI::PrintMenu() {
     PrintMenu();
     break;
   }
-  case '8':
+  case 8:
   {
     menu =
         "**************************************************************\n"
@@ -269,7 +276,7 @@ void MapUI::PrintMenu() {
     PrintMenu();
     break;
   }
-  case '9':
+  case 9:
   {
     menu =
         "**************************************************************\n"
@@ -361,7 +368,7 @@ void MapUI::PrintMenu() {
     PrintMenu();
     break;
   }
-    case '10':
+    case 10:
   {
     menu =
         "**************************************************************\n"
@@ -409,7 +416,7 @@ void MapUI::PrintMenu() {
     PrintMenu();
     break;
   }
-  case '11':
+  case 11:
     break;
   default:
   {

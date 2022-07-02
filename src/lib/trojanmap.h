@@ -15,6 +15,7 @@
 #include <fstream>
 #include <sstream>
 #include <climits>
+#include <regex>
 
 // A Node is the location of one point in the map.
 class Node {
@@ -61,11 +62,11 @@ class TrojanMap {
   // Returns a vector of names given a partial name.
   std::vector<std::string> Autocomplete(std::string name);
 
-  std::vector<std::string> TrojanMap::GetUniqueCategory();
+  std::vector<std::string> GetUniqueCategory();
 
-  std::pair<double, double> TrojanMap::GetCategoryLocations(std::string category);
+  std::pair<double, double> GetCategoryLocations(std::string category);
 
-  std::pair<double, double> TrojanMap::GetLocationRegex(std::regex location);
+  std::pair<double, double> GetLocationRegex(std::regex location);
 
   // Returns lat and lon of the given the name.
   std::pair<double, double> GetPosition(std::string name);
