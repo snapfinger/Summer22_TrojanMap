@@ -101,32 +101,32 @@ std::vector<std::string> TrojanMap::Autocomplete(std::string name){
 
 
 /**
- * GetUniqCategory: Return all the possible unique location categories.
+ * GetUniqueCategory: Return all the possible unique location categories.
  *
  * @return {std::vector<std::string>}  : all unique location categories
  */
-std::vector<std::string> TrojanMap::GetUniqCategory(){
+std::vector<std::string> TrojanMap::GetUniqueCategory(){
 }
 
 
 /**
- * GetCategoryLocation: Return all the locations of the input category (i.e. 'attributes' in data.csv). 
- * If there is no location of that category, return (-1, -1). The function should * be case-insensitive.
+ * GetCategoryLocations: Return all the locations of the input category (i.e. 'attributes' in data.csv). 
+ * If there is no location of that category, return (-1, -1). The function should be case-insensitive.
  *
  * @param  {std::string} category          : category name (attribute)
  * @return {std::pair<double, double>}     : (lat, lon)
  */
-std::pair<double, double> TrojanMap::GetCategoryLocation(std::string category){
+std::pair<double, double> TrojanMap::GetCategoryLocations(std::string category){
 }
 
 
 /**
-* GetLocation_RegularExpression: Given the regular expression of a location's name, your program should first check whether the regular expression is valid, and if so it returns all locations that match that regular expression.
+* GetLocationRegex: Given the regular expression of a location's name, your program should first check whether the regular expression is valid, and if so it returns all locations that match that regular expression.
  *
  * @param  {std::regex} location name      : the regular expression of location names
  * @return {std::pair<double, double>}     : (lat, lon)
  */
-std::pair<double, double> TrojanMap::GetLocation_RegularExpression(std::regex location){
+std::pair<double, double> TrojanMap::GetLocationRegex(std::regex location){
 }
 
 

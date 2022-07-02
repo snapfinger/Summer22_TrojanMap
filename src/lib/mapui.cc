@@ -3,6 +3,8 @@
  * PrintMenu: Create the menu
  * 
  */
+
+//  TODO: add 3, 4, 5
 void MapUI::PrintMenu() {
   std::string menu =
       "TrojanMap\n"
@@ -10,12 +12,15 @@ void MapUI::PrintMenu() {
       "* Select the function you want to execute.                    \n"
       "* 1. Autocomplete                                             \n"
       "* 2. Find the location                                        \n"
-      "* 3. CalculateShortestPath                                    \n"
-      "* 4. Travelling salesman problem                              \n"
-      "* 5. Cycle Detection                                          \n"
-      "* 6. Topological Sort                                         \n"
-      "* 7. Find Nearby                                              \n"
-      "* 8. Exit                                                     \n"
+      "* 3. Find all location categories                             \n"
+      "* 4. Get all locations of a category                          \n"
+      "* 5. Get location matching regular expression                 \n"
+      "* 6. CalculateShortestPath                                    \n"
+      "* 7. Cycle Detection                                          \n"
+      "* 8. Topological Sort                                         \n"
+      "* 9. Travelling salesman problem                              \n"
+      "* 10. Find Nearby                                              \n"
+      "* 11. Exit                                                     \n"
       "**************************************************************\n"
       "Please select 1 - 8: ";
   std::cout << menu;
@@ -90,11 +95,38 @@ void MapUI::PrintMenu() {
     PrintMenu();
     break;
   }
-  case '3':
+    case '3':
   {
     menu =
         "**************************************************************\n"
-        "* 3. CalculateShortestPath                                    \n"
+        "* 3. Find all location categories                             \n"
+        "**************************************************************\n";
+    std::cout << menu << std::endl;
+    // menu = "Please input a partial location:";
+    // std::cout << menu;
+    // getline(std::cin, input);
+    auto start = std::chrono::high_resolution_clock::now();
+    auto results = map.GetAllCategories();
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+    menu = "*************************Results******************************\n";
+    std::cout << menu;
+    if (results.size() != 0) {
+      for (auto x : results) std::cout << x << std::endl;
+    } else {
+      std::cout << "No matched locations." << std::endl;
+    }
+    menu = "**************************************************************\n";
+    std::cout << menu;
+    std::cout << "Time taken by function: " << duration.count()/1000 << " ms" << std::endl << std::endl;
+    PrintMenu();
+    break;
+  }
+  case '6':
+  {
+    menu =
+        "**************************************************************\n"
+        "* 6. CalculateShortestPath                                    \n"
         "**************************************************************\n";
     std::cout << menu << std::endl;
     menu = "Please input the start location:";
@@ -148,11 +180,100 @@ void MapUI::PrintMenu() {
     PrintMenu();
     break;
   }
-  case '4':
+  case '7':
   {
     menu =
         "**************************************************************\n"
-        "* 4. Travelling salesman problem                              \n"
+        "* 7. Cycle Detection                                          \n"
+        "**************************************************************\n";
+    std::cout << menu << std::endl;
+    std::cout << "Please input the left bound longitude(between -118.320 and -118.250):";
+    getline(std::cin, input);
+    std::vector<double> square;
+    square.push_back(atof(input.c_str()));
+
+    std::cout << "Please input the right bound longitude(between -118.320 and -118.250):";
+    getline(std::cin, input);
+    square.push_back(atof(input.c_str()));
+
+    std::cout << "Please input the upper bound latitude(between 34.000 and 34.040):";
+    getline(std::cin, input);
+    square.push_back(atof(input.c_str()));
+
+    std::cout << "Please input the lower bound latitude(between 34.000 and 34.040):";
+    getline(std::cin, input);
+    square.push_back(atof(input.c_str()));
+    auto subgraph = map.GetSubgraph(square);
+    PlotPointsandEdges(subgraph, square);
+    
+    auto start = std::chrono::high_resolution_clock::now();
+    auto results = map.CycleDetection(subgraph, square);
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+    menu = "*************************Results******************************\n";
+    std::cout << menu;
+    if (results == true)
+      std::cout << "there exists a cycle in the subgraph " << std::endl;
+    else
+      std::cout << "there exist no cycle in the subgraph " << std::endl;
+    menu = "**************************************************************\n";
+    std::cout << menu;
+    std::cout << "Time taken by function: " << duration.count()/1000 << " ms" << std::endl << std::endl;
+    PrintMenu();
+    break;
+  }
+  case '8':
+  {
+    menu =
+        "**************************************************************\n"
+        "* 8. Topological Sort                                         \n"
+        "**************************************************************\n";
+    std::cout << menu << std::endl;
+    std::cout << "Please input the locations filename:";;
+    std::string locations_filename;
+    getline(std::cin, locations_filename);
+    std::cout << "Please input the dependencies filename:";;
+    std::string dependencies_filename;
+    getline(std::cin, dependencies_filename);
+    
+    // Read location names from CSV file
+    std::vector<std::string> location_names;
+    if (locations_filename == "") 
+      location_names = {"Ralphs", "KFC", "Chick-fil-A"};
+    else
+      location_names = map.ReadLocationsFromCSVFile(locations_filename);
+    
+    // Read dependencies from CSV file
+    std::vector<std::vector<std::string>> dependencies;
+    if (dependencies_filename == "")
+      dependencies = {{"Ralphs","Chick-fil-A"}, {"Ralphs","KFC"}, {"Chick-fil-A","KFC"}};
+    else
+      dependencies = map.ReadDependenciesFromCSVFile(dependencies_filename);
+
+    auto start = std::chrono::high_resolution_clock::now();
+    auto result = map.DeliveringTrojan(location_names, dependencies);
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+    std::cout << "*************************Results******************************\n";
+    if (result.size() > 0) {
+      std::cout << "Topological Sorting Results:" << std::endl;
+      for (auto x : result) std::cout << x << std::endl;
+      std::vector<std::string> node_ids;
+      for (auto x: result) node_ids.push_back(map.GetID(x));
+      PlotPointsOrder(node_ids);
+    } else {
+      std::cout << "There is no topological sort for the given graph.\n";
+    }
+    std::cout << "**************************************************************\n";
+    std::cout << "Time taken by function: " << duration.count()/1000 << " ms" << std::endl << std::endl;
+    PrintMenu();
+    break;
+  }
+  case '9':
+  {
+    menu =
+        "**************************************************************\n"
+        "* 9. Travelling salesman problem                              \n"
         "**************************************************************\n";
     std::cout << menu << std::endl;
     menu = "In this task, we will select N random points on the map and you need to find the path to travel these points and back to the start point.";
@@ -240,100 +361,11 @@ void MapUI::PrintMenu() {
     PrintMenu();
     break;
   }
-  case '5':
+    case '10':
   {
     menu =
         "**************************************************************\n"
-        "* 5. Cycle Detection                                          \n"
-        "**************************************************************\n";
-    std::cout << menu << std::endl;
-    std::cout << "Please input the left bound longitude(between -118.320 and -118.250):";
-    getline(std::cin, input);
-    std::vector<double> square;
-    square.push_back(atof(input.c_str()));
-
-    std::cout << "Please input the right bound longitude(between -118.320 and -118.250):";
-    getline(std::cin, input);
-    square.push_back(atof(input.c_str()));
-
-    std::cout << "Please input the upper bound latitude(between 34.000 and 34.040):";
-    getline(std::cin, input);
-    square.push_back(atof(input.c_str()));
-
-    std::cout << "Please input the lower bound latitude(between 34.000 and 34.040):";
-    getline(std::cin, input);
-    square.push_back(atof(input.c_str()));
-    auto subgraph = map.GetSubgraph(square);
-    PlotPointsandEdges(subgraph, square);
-    
-    auto start = std::chrono::high_resolution_clock::now();
-    auto results = map.CycleDetection(subgraph, square);
-    auto stop = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-    menu = "*************************Results******************************\n";
-    std::cout << menu;
-    if (results == true)
-      std::cout << "there exists a cycle in the subgraph " << std::endl;
-    else
-      std::cout << "there exist no cycle in the subgraph " << std::endl;
-    menu = "**************************************************************\n";
-    std::cout << menu;
-    std::cout << "Time taken by function: " << duration.count()/1000 << " ms" << std::endl << std::endl;
-    PrintMenu();
-    break;
-  }
-  case '6':
-  {
-    menu =
-        "**************************************************************\n"
-        "* 6. Topological Sort                                         \n"
-        "**************************************************************\n";
-    std::cout << menu << std::endl;
-    std::cout << "Please input the locations filename:";;
-    std::string locations_filename;
-    getline(std::cin, locations_filename);
-    std::cout << "Please input the dependencies filename:";;
-    std::string dependencies_filename;
-    getline(std::cin, dependencies_filename);
-    
-    // Read location names from CSV file
-    std::vector<std::string> location_names;
-    if (locations_filename == "") 
-      location_names = {"Ralphs", "KFC", "Chick-fil-A"};
-    else
-      location_names = map.ReadLocationsFromCSVFile(locations_filename);
-    
-    // Read dependencies from CSV file
-    std::vector<std::vector<std::string>> dependencies;
-    if (dependencies_filename == "")
-      dependencies = {{"Ralphs","Chick-fil-A"}, {"Ralphs","KFC"}, {"Chick-fil-A","KFC"}};
-    else
-      dependencies = map.ReadDependenciesFromCSVFile(dependencies_filename);
-
-    auto start = std::chrono::high_resolution_clock::now();
-    auto result = map.DeliveringTrojan(location_names, dependencies);
-    auto stop = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-    std::cout << "*************************Results******************************\n";
-    if (result.size() > 0) {
-      std::cout << "Topological Sorting Results:" << std::endl;
-      for (auto x : result) std::cout << x << std::endl;
-      std::vector<std::string> node_ids;
-      for (auto x: result) node_ids.push_back(map.GetID(x));
-      PlotPointsOrder(node_ids);
-    } else {
-      std::cout << "There is no topological sort for the given graph.\n";
-    }
-    std::cout << "**************************************************************\n";
-    std::cout << "Time taken by function: " << duration.count()/1000 << " ms" << std::endl << std::endl;
-    PrintMenu();
-    break;
-  }
-    case '7':
-  {
-    menu =
-        "**************************************************************\n"
-        "* 7. Find Nearby                                              \n"
+        "* 10. Find Nearby                                              \n"
         "**************************************************************\n";
     std::cout << menu << std::endl;
     
@@ -377,7 +409,7 @@ void MapUI::PrintMenu() {
     PrintMenu();
     break;
   }
-  case '8':
+  case '11':
     break;
   default:
   {

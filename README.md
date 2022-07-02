@@ -122,7 +122,7 @@ For MacOS users, run
 $ bazel run src/main:main
 ```
 
-For Ubuntu users, you need to use the following command to prevent errors.
+For Ubuntu users, run
                
 ```shell
 $ bazel run --cxxopt='-std=c++17' src/main:main
@@ -130,6 +130,7 @@ $ bazel run --cxxopt='-std=c++17' src/main:main
 
 If everything is correct, this menu will show up.
 
+TODO:
 ```shell
 TrojanMap
 **************************************************************
@@ -159,7 +160,7 @@ Please add you test in the [trojanmap_test_student.cc](tests/trojanmap_test_stud
 $ bazel test tests:trojanmap_test_student
 ```
 
-## Item 1: Autocomplete the location name
+## Item 1: Autocomplete the location name (phase 1)
 
 ```c++
 std::vector<std::string> Autocomplete(std::string name);
@@ -196,7 +197,7 @@ Chevron
 Time taken by function: 2 ms
 ```
 
-## Item 2-1: Find the place's coordinates in the Map
+## Item 2-1: Find the place's coordinates in the Map (phase 1)
 
 ```c++
 std::pair<double, double> GetPosition(std::string name);
@@ -223,7 +224,7 @@ Time taken by function: 1 ms
 
 <p align="center"><img src="img/Target.png" alt="Target" width="500"/></p>
 
-## Item 2-2: Check edit distance between two location names
+## Item 2-2: Check edit distance between two location names (phase 2)
 
 ```c++
 int CalculateEditDistance(std::string name1, std::string name2);
@@ -270,13 +271,17 @@ Latitude: 34.0318 Longitude: -118.291
 Time taken by function: 2 ms
 ```
 
-## Item 3: GetCategory
-Some of the locations are with marked category types (`attributes` field in `data.csv` file)
+## Item 3: Get All Locations' Categories (phase 2)
+Some of the locations are with marked category types (`attributes` field in `data.csv` file). Find 
 
-### Item 4: 
+### Item 4: (phase 2)
+GetCategoryLocation
+
+### Item 5: (phase 2)
+GetLocation_RegularExpression
 
 
-## Item 3: CalculateShortestPath between two places
+## Item 6: CalculateShortestPath between two places (phase 2)
 
 ```c++
 std::vector<std::string> CalculateShortestPath_Dijkstra(std::string &location1_name,
@@ -292,7 +297,7 @@ Please report and compare the time spent by these 2 algorithms.
 Example
 ```
 **************************************************************
-* 3. CalculateShortestPath                                    
+* 6. CalculateShortestPath                                    
 **************************************************************
 
 Please input the start location:Ralphs
@@ -315,7 +320,7 @@ Time taken by function: 7084 ms
 <p align="center"><img src="img/Routing.png" alt="Routing" width="500"/></p>
 
 
-## Item 5: Cycle Detection
+## Item 7: Cycle Detection (phase 2)
 
 ```c++
 bool CycleDetection(std::vector<double> &square);
@@ -325,7 +330,7 @@ In this section, we use a square-shaped subgraph of the original graph by using 
 
 Then try to determine if there is a cycle path in the that subgraph. If it does, return true and report the path of the cycle on the map. Otherwise return false.
 
-## Item 6: Topological Sort
+## Item 8: Topological Sort (phase 2)
 
 ```c++
 std::vector<std::string> DeliveringTrojan(std::vector<std::string> &location_names,
@@ -382,7 +387,7 @@ Time taken by function: 2 ms
 In the user interface, we read the locations and dependencies from `topologicalsort_dependencies.csv` and `topologicalsort_locations.csv` to modify your input there.
 
 
-## Item 4: The Travelling Trojan Problem (AKA Travelling Salesman!)
+## Item 9: The Travelling Trojan Problem (AKA Travelling Salesman!) (phase 3)
 
 In this section, we assume that we are using a UAV which means we can fly directly from 1 point to another point. Given a vector of location ids, assume every location can reach all other locations in the vector (i.e. assume that the vector of location ids is a complete graph).
 Find the shortest route that covers all the locations exactly once and goes back to the start point. 
@@ -417,7 +422,7 @@ We will randomly select N points in the map and run your program.
 
 ```shell
 **************************************************************
-* 4. Travelling salesman problem                              
+* 9. Travelling salesman problem                              
 **************************************************************
 
 In this task, we will select N random points on the map and you need to find the path to travel these points and back to the start point.
@@ -457,7 +462,7 @@ Time taken by function: 0 ms
 <p align="center"><img src="img/output.gif" alt="TSP videos" width="500"/></p>
 
 
-## Item 7: Find Nearby
+## Item 10: Find Nearby (phase 3)
 
 Given a attribute name C, a location name L and a number r and k, find at most k locations in attribute C on the map near L(do not include L) with the range of r and return a vector of string ids. The order of locaitons should from
 nearest to farthest. And you should not include the current location. 
@@ -475,7 +480,7 @@ Please report and compare the time spent by this algorithm and show the points o
 
 ```shell
 **************************************************************
-* 7. Find Nearby                                    
+* 10. Find Nearby                                    
 **************************************************************
 
 Please input the attribute:supermarket
