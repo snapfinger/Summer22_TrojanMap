@@ -625,7 +625,7 @@ Please create a new REPORT.md file and write your report there.
    - Table/Plot for comparison, and measure and report time spent by two algorithms.
 - Implement of Cycle detection: 5 points. (Phase 2)
    - Boolean value and draw the cycle if there exists one.
-- Topological Sort: 10 points. (Phase 2)
+- Topological Sort: 5 points (Phase 2)
    - Check whether there exist a topological sort or not
    - Return the correct order and plot those point on the map
 - Implementation of Traveling Trojan: (Phase 3)
@@ -633,22 +633,23 @@ Please create a new REPORT.md file and write your report there.
    - Brute-force enhanced with early backtracking: 5 points.
    - 2-opt: 10 points.
    - Animated plot: 5 points.
-- FindNearby points: 10 points. (Phase 3)
+- FindNearby points: 5 points. (Phase 3)
    - Return the correct ids and draw the points.
 - Video presentation and report: 10 points. (Phase 3)
 - Creating reasonable unit tests: 10 points.
       - Three different unit tests for each function.
-- **Extra credit items**: Maximum of 20 points:
-      1. [3-opt](http://cs.indstate.edu/~zeeshan/aman.pdf): 10 points.
-      2. [Genetic algorithm](https://www.geeksforgeeks.org/traveling-salesman-problem-using-genetic-algorithm/) implementation for Traveling Trojan: 10 points
-      3. Create dynamic and animated UI using [ncurses](https://en.wikipedia.org/wiki/Ncurses): 10 points
-         - Uncomment #define NCURSES in main.cc and mapui.h
-         - Create your menu in DynamicPrintMenu().
-         - You could check https://github.com/ourarash/ncurses_bazel
-         - Please develope your own UI.
-         - Example
-            <p align="center"><img src="img/ncurses example.gif" alt="example" width="500"/></p>
-               
 
-      - Accurate measurement of your algorithm    runtime using Google Benchmark while sweeping the input size and providing a diagram of how the runtime grows based on the input size: 10 points.
+
+## Extra credit items: Maximum of 20 points:
+   1. Implementation of [3-opt](http://cs.indstate.edu/~zeeshan/aman.pdf): 10 points.
+   2. [Genetic algorithm](https://www.geeksforgeeks.org/traveling-salesman-problem-using-genetic-algorithm/) implementation for Traveling Trojan: 10 points
+   3. Create dynamic and animated UI using [ncurses](https://en.wikipedia.org/wiki/Ncurses): 10 points
+      - Uncomment #define NCURSES in main.cc and mapui.h
+      - Create your menu in DynamicPrintMenu().
+      - You could check https://github.com/ourarash/ncurses_bazel
+      - Please develope your own UI.
+      - Example
+         <p align="center"><img src="img/ncurses example.gif" alt="example" width="500"/></p>
+               
+   4. Accurate measurement of your algorithm runtime using [Google Benchmark](https://www.youtube.com/watch?v=9VKR8u9odrA) while sweeping the input size and providing a diagram of how the runtime grows based on the input size: 10 points.
 
