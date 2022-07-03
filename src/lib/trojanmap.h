@@ -109,13 +109,13 @@ class TrojanMap {
   // and the second member is the reordered vector of points.
   // (Notice that we don't find the optimal answer. You can return an estimated
   // path.)
-  std::pair<double, std::vector<std::vector<std::string>>> TravellingTrojan_Brute_force(
+  std::pair<double, std::vector<std::vector<std::string>>> TravelingTrojan_Brute_force(
       std::vector<std::string> location_ids);
   
-  std::pair<double, std::vector<std::vector<std::string>>> TravellingTrojan_Backtracking(
+  std::pair<double, std::vector<std::vector<std::string>>> TravelingTrojan_Backtracking(
       std::vector<std::string> location_ids);
   
-  std::pair<double, std::vector<std::vector<std::string>>> TravellingTrojan_2opt(
+  std::pair<double, std::vector<std::vector<std::string>>> TravelingTrojan_2opt(
       std::vector<std::string> location_ids);
 
   // Check whether the id is in square or not

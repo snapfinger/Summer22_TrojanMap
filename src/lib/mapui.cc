@@ -18,7 +18,7 @@ void MapUI::PrintMenu() {
       "* 6. CalculateShortestPath                                    \n"
       "* 7. Cycle Detection                                          \n"
       "* 8. Topological Sort                                         \n"
-      "* 9. Travelling salesman problem                              \n"
+      "* 9. Traveling salesman problem                              \n"
       "* 10. Find Nearby                                              \n"
       "* 11. Exit                                                     \n"
       "**************************************************************\n";
@@ -280,7 +280,7 @@ void MapUI::PrintMenu() {
   {
     menu =
         "**************************************************************\n"
-        "* 9. Travelling salesman problem                              \n"
+        "* 9. Traveling salesman problem                              \n"
         "**************************************************************\n";
     std::cout << menu << std::endl;
     menu = "In this task, we will select N random points on the map and you need to find the path to travel these points and back to the start point.";
@@ -301,13 +301,13 @@ void MapUI::PrintMenu() {
     for (auto x: locations) std::cout << "\"" << x << "\",";
     std::cout << "\nCalculating ..." << std::endl;
     auto start = std::chrono::high_resolution_clock::now();
-    auto results = map.TravellingTrojan_Brute_force(locations);
+    auto results = map.TravelingTrojan_Brute_force(locations);
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
     CreateAnimation(results.second, "output0.avi");
     menu = "*************************Results******************************\n";
     std::cout << menu;
-    menu = "TravellingTrojan_Brute_force\n";
+    menu = "TravelingTrojan_Brute_force\n";
     std::cout << menu;
     if (results.second.size() != 0) {
       for (auto x : results.second[results.second.size()-1]) std::cout << "\"" << x << "\",";
@@ -323,13 +323,13 @@ void MapUI::PrintMenu() {
 
     std::cout << "Calculating ..." << std::endl;
     start = std::chrono::high_resolution_clock::now();
-    results = map.TravellingTrojan_Backtracking(locations);
+    results = map.TravelingTrojan_Backtracking(locations);
     stop = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
     CreateAnimation(results.second, "output0_backtracking.avi");
     menu = "*************************Results******************************\n";
     std::cout << menu;
-    menu = "TravellingTrojan_Backtracking\n";
+    menu = "TravelingTrojan_Backtracking\n";
     std::cout << menu;
     if (results.second.size() != 0) {
       for (auto x : results.second[results.second.size()-1]) std::cout << "\"" << x << "\",";
@@ -345,13 +345,13 @@ void MapUI::PrintMenu() {
     
     std::cout << "Calculating ..." << std::endl;
     start = std::chrono::high_resolution_clock::now();
-    results = map.TravellingTrojan_2opt(locations);
+    results = map.TravelingTrojan_2opt(locations);
     stop = std::chrono::high_resolution_clock::now();
     duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
     CreateAnimation(results.second, "output0_2opt.avi");
     menu = "*************************Results******************************\n";
     std::cout << menu;
-    menu = "TravellingTrojan_2opt\n";
+    menu = "TravelingTrojan_2opt\n";
     std::cout << menu;
     if (results.second.size() != 0) {
       for (auto x : results.second[results.second.size()-1]) std::cout << "\"" << x << "\",";
