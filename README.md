@@ -12,6 +12,8 @@ You should inform us of your choice by the first due date (Friday July 8).
 #### Who should work on the project?
 If you plan to become a software engineer, we recommend to work on the project as it will give you more experience in coding a real life project. Otherwise, you can take the homework assignments.
 
+Not everything in the project is covered in the class. The idea is for you to do some quick research and figure them out. For example, you should read on handling regular expressions in C++.
+
 #### Which one is harder?
 We expect both options to take similar amount of time. The project however might require extra effort from you during the environment setup and installing prerequisites.
 
