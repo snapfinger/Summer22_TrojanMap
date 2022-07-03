@@ -314,7 +314,7 @@ Latitude: 34.0318 Longitude: -118.291
 Time taken by function: 2 ms
 ```
 
-## Item 3: Get All Locations' Categories (Phase 2)
+## Item 3: Get All Categories (Phase 2)
 
 `GetAllCategories`
 

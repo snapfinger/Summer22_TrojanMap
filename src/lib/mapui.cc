@@ -105,7 +105,7 @@ void MapUI::PrintMenu() {
     // std::cout << menu;
     // getline(std::cin, input);
     auto start = std::chrono::high_resolution_clock::now();
-    auto results = map.GetUniqueCategory();
+    auto results = map.GetAllCategories();
     auto stop = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
     menu = "*************************Results******************************\n";
