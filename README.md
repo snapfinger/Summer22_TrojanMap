@@ -52,7 +52,8 @@ This project focuses on using data structures in C++ and implementing various gr
 
 - Please clone the repository, read through [README.md](README.md) and implement the functions of the project.
 - Please make sure that your code can run `bazel run` and `bazel test`.
-- You need to fill in [trojanmap.cc](src/lib/trojanmap.cc) and add unit tests in the `tests` directory.
+- You need to fill in [trojanmap.cc](src/lib/trojanmap.cc), [mapui.cc](src/lib/mapui.cc) and maybe [mapui.h](src/lib/mapui.h), and add unit tests in the `tests` directory.
+- We will use autograder to grade some of the questions
 
 ---
 
@@ -167,19 +168,21 @@ $ bazel run --cxxopt='-std=c++17' src/main:main
 If everything is correct, a menu similar to this will show up.
 
 ```shell
-TrojanMap
+TrojanMap Menu
 **************************************************************
-* Select the function you want to execute.                    
+* Enter the function number (1-11) to start:                  
 * 1. Autocomplete                                             
 * 2. Find the location                                        
-* 3. CalculateShortestPath                                    
-* 4. Traveling salesman problem                              
-* 5. Cycle Detection                                          
-* 6. Topological Sort                                         
-* 7. Find Nearby                                              
-* 8. Exit                                                     
+* 3. Find all location categories                             
+* 4. Get all locations of a category                          
+* 5. Get location matching regular expression                 
+* 6. CalculateShortestPath                                    
+* 7. Cycle Detection                                          
+* 8. Topological Sort                                         
+* 9. Traveling salesman problem                              
+* 10. Find Nearby                                              
+* 11. Exit                                                     
 **************************************************************
-Please select 1 - 8:
 ```
 
 ## Test The Program
@@ -318,21 +321,27 @@ Time taken by function: 2 ms
 
 ## Item 3: Get All Categories (Phase 2)
 
-`GetAllCategories`
+```c++
+std::vector<std::string> GetAllCategories();
+```
 
 Some of the locations have category types (`attributes` field in `data.csv` file). 
 
 In this section, your program should print all available categories among all existing categories in the map. There should be no duplicates in the output.
 
-### Item 4: Get All Locations In A Category (Phase 2)
+## Item 4: Get All Locations In A Category (Phase 2)
 
-`GetAllLocationsFromCategory`
+```c++
+std::pair<double, double> GetAllLocationsFromCategory(std::string category);
+```
 
 In this section if the user entries a category, the program prints all locations that match that category. For example, if there is a category called "Grocery", your program should print all locations that match the "Grocery" category. 
 
-### Item 5: Get Locations Using A Regular Expression (Phase 2)
+## Item 5: Get Locations Using A Regular Expression (Phase 2)
 
-`GetLocationRegex`
+```c++
+std::pair<double, double> GetLocationRegex(std::regex location);
+```
 
 In this section if the user enters a [regular expression](https://en.wikipedia.org/wiki/Regular_expression), they should see all locations that match that regular expression.
 
@@ -613,31 +622,32 @@ Please create a new REPORT.md file and write your report there.
 
 ### Rubrics:
 
-- Implementation of Auto complete: 1 points. (Phase 1)
-- Implementation of GetPosition: 1 points. (Phase 1)
-- Implementation of EditDistance: 10 points. (Phase 2)
-- Item 3: 3 Points. (Phase 2)
-- Item 4: 5 Points. (Phase 2)
-- Item 5: 5 Points. (Phase 2)
-- Implementation of Shortest path: 15 points. (Phase 2)
+- Item 1 (AutoComplete): 1 point. (Phase 1)
+- Item 2-1 (GetPosition): 1 point. (Phase 1)
+- Item 2-2 (EditDistance): 10 points. (Phase 2)
+- Item 3 (GetAllCategories): 3 Points. (Phase 2)
+- Item 4 (GetAllLocationsFromCategory): 5 Points. (Phase 2)
+- Item 5 (GetLocationRegex): 5 Points. (Phase 2)
+- Item 6 (Shortest path): 15 points. (Phase 2)
    - Bellman-Ford implementation
    - Dijkstra implementation
    - Table/Plot for comparison, and measure and report time spent by two algorithms.
-- Implement of Cycle detection: 5 points. (Phase 2)
+- Item 7 (Cycle detection): 5 points. (Phase 2)
    - Boolean value and draw the cycle if there exists one.
-- Topological Sort: 5 points (Phase 2)
+- Item 8 (Topological Sort): 5 points (Phase 2)
    - Check whether there exist a topological sort or not
    - Return the correct order and plot those point on the map
-- Implementation of Traveling Trojan: (Phase 3)
+- Item 9 (Traveling Trojan) (Phase 3)
    - Brute-force: 5 points.
    - Brute-force enhanced with early backtracking: 5 points.
    - 2-opt: 10 points.
    - Animated plot: 5 points.
-- FindNearby points: 5 points. (Phase 3)
+- Item 10 (FindNearby): 5 points. (Phase 3)
    - Return the correct ids and draw the points.
-- Video presentation and report: 10 points. (Phase 3)
 - Creating reasonable unit tests: 10 points.
       - Three different unit tests for each function.
+- Video presentation and report: 10 points. (Phase 3)
+
 
 
 ## Extra credit items: Maximum of 20 points:

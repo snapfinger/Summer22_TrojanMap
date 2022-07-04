@@ -4,7 +4,7 @@
  * 
  */
 
-//  TODO: add 3, 4, 5
+//  TODO: fill in the code for item 3, 4, 5
 void MapUI::PrintMenu() {
   std::string menu =
       "TrojanMap Menu\n"
@@ -101,33 +101,31 @@ void MapUI::PrintMenu() {
         "* 3. Find all location categories                             \n"
         "**************************************************************\n";
     std::cout << menu << std::endl;
-    // menu = "Please input a partial location:";
-    // std::cout << menu;
-    // getline(std::cin, input);
-    auto start = std::chrono::high_resolution_clock::now();
-    auto results = map.GetAllCategories();
-    auto stop = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-    menu = "*************************Results******************************\n";
-    std::cout << menu;
-    if (results.size() != 0) {
-      for (auto x : results) std::cout << x << std::endl;
-    } else {
-      std::cout << "No matched locations." << std::endl;
-    }
-    menu = "**************************************************************\n";
-    std::cout << menu;
-    std::cout << "Time taken by function: " << duration.count()/1000 << " ms" << std::endl << std::endl;
+    // fill in here  
     PrintMenu();
     break;
   }
   case 4:
   {
-    std::cout << "TODO" << std::endl;
+    menu =
+        "**************************************************************\n"
+        "* 4. Get all locations in a category                           \n"
+        "**************************************************************\n";
+    std::cout << menu << std::endl;
+    // fill in here 
+    PrintMenu();
+    break;
   }
   case 5:
   {
-    std::cout << "TODO" << std::endl;
+     menu =
+        "**************************************************************\n"
+        "* 5. Get locations using a regular expression                 \n"
+        "**************************************************************\n";
+    std::cout << menu << std::endl;
+    // fill in here
+    PrintMenu();
+    break;
   }
   case 6:
   {
